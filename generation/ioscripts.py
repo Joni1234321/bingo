@@ -1,18 +1,18 @@
 # USED FOR READ AND WRITE DATA
 
-SEPERATOR_TITLE = ":"
+SEPERATOR_NAME = ":"
 
 SEPERATOR_NUMBER = ","
 SEPERATOR_ROW = ";"
 SEPERATOR_PLATE = "|"
-SEPERATOR_NAME = "\n"
+SEPERATOR_PLAYER = "\n"
 
 # Converts a string to list
 def data_to_plate(plate_data):
     plate = []
     rows = list(plate_data.split(SEPERATOR_ROW))
     for row in rows:
-        print(row)
+        #print(row)
         plate.append([int(n) for n in list(row.split(SEPERATOR_NUMBER))])
     return plate
 
@@ -25,41 +25,47 @@ def plate_to_data(rows):
     return SEPERATOR_ROW.join(rows_string)
 
 
-# Clear file
+# Delete all content in file
 def clear_file(file_name):
     f = open(file_name, "w")
     f.write("")
     f.close()
 
 
-# Save plates to file
+# Save settings to file given the name and plate
 def save_plates(file_name, name, plates):
     f = open(file_name, "a")
-    f.write(name + SEPERATOR_TITLE)
+    f.write(name + SEPERATOR_NAME)
     for plate in plates:
         f.write(plate_to_data(plate) + SEPERATOR_PLATE)
 
-    f.write(SEPERATOR_NAME)
+    f.write(SEPERATOR_PLAYER)
     f.close()
 
 
-# Returns all names
+# Returns all settings and their corresponding from file given the right syntax
+#
 def read_names(file_name):
     names = {}
     f = open(file_name, "r")
     plates_data = f.read()
     f.close()
-    for name_data in plates_data.split(SEPERATOR_NAME):
+
+    # Foreach player
+    for name_data in plates_data.split(SEPERATOR_PLAYER):
         if name_data == "":
             continue
-        ls = name_data.split(SEPERATOR_TITLE)
+
+        # Get name and settings
+        (name, plates_data) = name_data.split(SEPERATOR_NAME)
         plates = []
-        for plate_data in list(ls[1].split(SEPERATOR_PLATE)):
+        for plate_data in list(plates_data.split(SEPERATOR_PLATE)):
             if plate_data == "":
                 continue
             plates.append(data_to_plate(plate_data))
 
-        names[ls[0]] = plates
+        # Plates at name in dictionary
+        names[name] = plates
 
     return names
 

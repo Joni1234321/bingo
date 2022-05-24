@@ -1,16 +1,17 @@
-def commands(cmd):
+def commands(game, cmd):
     if cmd == "undo":
-        undo()
+        game.undo()
+        game.print_draw_numbers()
         return True
 
     return False
 
-
-def parseint(message, min, max, cmds=True):
+# YES THIS IS SHIT CODE; BUT IT WORKS
+def parseint(game, message, min, max, cmds=True):
     while True:
         val = input(message)
 
-        if cmds and commands(val):
+        if cmds and commands(game, val):
             continue
 
         try:
@@ -20,15 +21,12 @@ def parseint(message, min, max, cmds=True):
             continue
 
         if number < min:
-            print("Number too low, [{};{}]".format(min, max))
+            print("Number too low [{};{}]".format(min, max))
             continue
 
         if number > max:
-            print("Number too high, [{};{}]".format(min, max))
+            print("Number too high [{};{}]".format(min, max))
             continue
 
         return number
 
-
-def undo():
-    print("Undo")
