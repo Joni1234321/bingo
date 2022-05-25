@@ -1,10 +1,18 @@
+# regex (|.*?)(\d+) -> $2\n
+
 def commands(game, cmd):
     if cmd == "undo":
         game.undo()
         game.print_draw_numbers()
         return True
 
+    # Easter egg
+    if cmd == "Vendelbo" or cmd == "Jonas" or cmd == "currywurst" or cmd == "curryotto":
+        print("CURRYWURST!!!")
+        return True
+
     return False
+
 
 # YES THIS IS SHIT CODE; BUT IT WORKS
 def parseint(game, message, min, max, cmds=True):
@@ -29,4 +37,3 @@ def parseint(game, message, min, max, cmds=True):
             continue
 
         return number
-

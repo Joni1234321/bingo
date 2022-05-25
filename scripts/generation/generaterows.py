@@ -53,12 +53,18 @@ def generate_plate():
 def is_valid_plate (rows, columns):
     # check for empty columns
     empty_cols = 0
+    full_cols = 0
     for col in columns:
         if len(col) == 0:
             empty_cols += 1
+        if len(col) == 3:
+            full_cols += 1
 
-    # Max two empty cols otherwise generate a new one
+    # Max one empty cols otherwise generate a new one
     if empty_cols > 1:
+        return False
+    # Max two full columns
+    if full_cols >= 3:
         return False
 
     return True

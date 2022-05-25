@@ -1,15 +1,17 @@
-from generation.generaterows import generate_plate
-from generation.ioscripts import clear_file, save_plates
-from generation.drawplate import player_to_pdf
-from plate import Plate
+from scripts.generation.generaterows import generate_plate
+from scripts.generation.ioscripts import clear_file, save_plates
+from scripts.generation.drawplate import player_to_pdf, all_plates_to_pdf
+from scripts.classes.plate import Plate
 import sys
 
-DATA_FILE = "generation/data"
-NAME_FILE = "settings/names.txt"
+DATA_FILE = "scripts/generation/data"
+NAME_FILE = "user/names.txt"
 
 
 def generate(n):
     names = read_names(NAME_FILE)
+    list_of_plates = []
+
     print("Generating {} settings each for {} names".format(n, len(names)))
 
     clear_file(DATA_FILE)
@@ -30,11 +32,16 @@ def generate(n):
             plates.append(plate)
             print(plate)
 
-        player_to_pdf(plates)
+        player_to_pdf(plates[0].name, plates)
+
+        # For creating a pdf containing all plates
+        list_of_plates.append(plates)
+
+    all_plates_to_pdf(list_of_plates)
 
     print("Generation complete!")
     print("Ida er fucking sej")
-    print("OK MOTHERFUCKER")
+    print("Currywurst!!")
 
 
 # Returns a list of names

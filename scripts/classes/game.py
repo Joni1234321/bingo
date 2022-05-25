@@ -1,4 +1,4 @@
-from intparse import parseint
+from scripts.intparse import parseint
 
 
 class Game:
@@ -57,4 +57,8 @@ class Game:
                 else:
                     s += "    |"
             s += "\n"
+        if self.drawn_numbers[90]:
+            s += "| 90 |"
+        else:
+            s += "|    |"
         print(s)

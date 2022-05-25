@@ -1,9 +1,9 @@
 # Press Shift+F10 to execute it or replace it with your code.
-from plate import Plate
-from game import Game
-from generation.ioscripts import read_names
+from scripts.classes.plate import Plate
+from scripts.classes.game import Game
+from scripts.generation.ioscripts import read_names
 
-FILE_NAME = "generation/data"
+FILE_NAME = "scripts/generation/data"
 
 plates = []
 

@@ -28,7 +28,7 @@ class Plate:
                 if len(self.rows_undrawn[r]) == 0:
                     self.rows_completed += 1
 
-                    print(self.name + " completed " + self.ordenstal(self.rows_completed) + " @ row " + str(
+                    print(self.name + " has " + self.ordenstal(self.rows_completed) + " @ row " + str(
                         r + 1) + " on board: \n" + str(self))
                 break  # No need to check further
 
